@@ -13,9 +13,9 @@ Repositorio de la Primera pre entrega del alumno Gabriel Navarro para el curso B
 
 El proyecto se ejecuta a través de los siguientes comandos:
 
-- npm run app => el cual ejecuta el archivo App.js desde Node
+- npm run app => el cual ejecuta el archivo main.js desde Node
 
-- npm run dev => el cual ejecuta el archivo App.js con Nodemon
+- npm run dev => el cual ejecuta el archivo main.js con Nodemon
 
 ## Licencia
 

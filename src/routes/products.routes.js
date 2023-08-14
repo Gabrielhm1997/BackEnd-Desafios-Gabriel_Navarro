@@ -17,7 +17,7 @@ routerProd.get('/', async (req, res) => { //Devuelve todos los productos o la ca
         })
         .catch(error => res.status(400).send(error))
 })
-
+ 
 routerProd.get('/:pid', async (req, res) => { //Devuelve el producto del id especifico 
     manager.getProductByID(req.params.pid)
         .then(response => res.status(200).send(response))
