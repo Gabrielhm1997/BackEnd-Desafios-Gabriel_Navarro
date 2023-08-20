@@ -6,7 +6,7 @@ export class ProductManager {
         this.path = path
     }
 
-    addProduct = async ({ title, description, price, thumbnail, code, stock, category }) => {
+    addProduct = async ({ title, description, price, thumbnail, code, stock, category, status }) => {
 
         return new Promise((resolve, reject) => {
             if (title && description && price && thumbnail && code && category) {
@@ -16,7 +16,7 @@ export class ProductManager {
                         const productFound = inventory.find(item => item.code === code)
 
                         if (!productFound) {
-                            const product = new Product(title, description, price, thumbnail, code, stock, category, this.path)
+                            const product = new Product(title, description, price, thumbnail, code, stock, category, status)
                             inventory.push(product)
 
                             fs.writeFile(this.path, JSON.stringify(inventory))
@@ -107,7 +107,7 @@ export class ProductManager {
 }
 
 export class Product {
-    constructor(title, description, price, thumbnail, code, stock, category) {
+    constructor(title, description, price, thumbnail, code, stock, category, status) {
         this.title = title
         this.description = description
         this.price = price
@@ -115,11 +115,21 @@ export class Product {
         this.code = code
         this.stock = stock
         this.category = category
-        this.status = true
+        this.status = Product.setStatus(status) ?? true
         this.id = Product.setId()
     }
 
     static setId = () => {
         return uuidV4()
+    }
+
+    static setStatus = (status) => {
+
+        if (status.toLowerCase().trim() === "true") {
+            return true
+        } else if (status.toLowerCase().trim() === "false") {
+            return false
+        }
+        return undefined
     }
 }

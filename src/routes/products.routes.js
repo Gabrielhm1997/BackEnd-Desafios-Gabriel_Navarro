@@ -26,20 +26,20 @@ routerProd.get('/:pid', async (req, res) => { //Devuelve el producto del id espe
 
 routerProd.post('/', async (req, res) => { //Agrega un producto 
     manager.addProduct(req.body)
-        .then(response => res.status(200).send(response))
+        .then(response => res.status(201).send(response))
         .catch(error => res.status(400).send(error))
 })
 
 routerProd.put('/:pid', async (req, res) => { //Actualiza un producto
     manager.updateProduct(req.params.pid, req.body)
         .then(response => res.status(200).send(response))
-        .catch(error => res.status(400).send(error))
+        .catch(error => res.status(404).send(error))
 })
 
 routerProd.delete('/:pid', async (req, res) => { //Borra un producto
     manager.deleteProduct(req.params.pid)
-        .then(response => res.send(response))
-        .catch(error => res.send(error))
+        .then(response => res.status(204).send(response))
+        .catch(error => res.status(404).send(error))
 })
 
 export default routerProd

@@ -1,0 +1,11 @@
+<h1>Productos Estaticos</h1>
+
+<div>
+    <ul>
+        {{#each inventory}}
+        <li>
+            <p>{{this.title}}: {{this.price}} c/u ID: {{this.id}}</p>
+        </li>
+        {{/each}}
+    </ul>
+</div>
